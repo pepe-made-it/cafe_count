@@ -8,6 +8,9 @@ on:
       - 'v*'
   workflow_dispatch:  # 수동 실행 가능
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -73,6 +76,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ github.ref_name }}
+        name: "🌟 빛이왔다 스타워게즈 댓글 자동 수집기 ${{ github.ref_name }}"
+        draft: false
+        prerelease: false
         files: "빛이왔다_스타워게즈_댓글수집기_Windows.zip"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,6 +88,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ github.ref_name }}
+        name: "🌟 빛이왔다 스타워게즈 댓글 자동 수집기 ${{ github.ref_name }}"
+        draft: false
+        prerelease: false
         files: |
           빛이왔다_스타워게즈_댓글수집기.dmg
           빛이왔다_스타워게즈_댓글수집기_macOS.tar.gz
@@ -93,6 +102,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ github.ref_name }}
+        name: "🌟 빛이왔다 스타워게즈 댓글 자동 수집기 ${{ github.ref_name }}"
+        draft: false
+        prerelease: false
         files: "빛이왔다_스타워게즈_댓글수집기_Linux.tar.gz"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
