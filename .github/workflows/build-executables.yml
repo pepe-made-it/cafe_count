@@ -1,0 +1,94 @@
+name: Build Executables
+
+on:
+  release:
+    types: [published]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        pip install -r requirements.txt
+    
+    - name: Build GUI executable (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        pyinstaller --onefile --windowed --name "네이버카페댓글수집기" gui_main.py
+        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+    
+    - name: Build GUI executable (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        pyinstaller --onefile --windowed --name "네이버카페댓글수집기" gui_main.py
+        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+    
+    - name: Build GUI executable (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        pyinstaller --onefile --name "네이버카페댓글수집기" gui_main.py
+        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+    
+    - name: Create archive (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        7z a starwargez-comment-collector-windows.zip ./dist/*
+    
+    - name: Create archive (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        tar -czf starwargez-comment-collector-macos.tar.gz -C dist .
+    
+    - name: Create archive (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        tar -czf starwargez-comment-collector-linux.tar.gz -C dist .
+    
+    - name: Upload artifacts (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-executables
+        path: starwargez-comment-collector-windows.zip
+    
+    - name: Upload artifacts (macOS)
+      if: matrix.os == 'macos-latest'
+      uses: actions/upload-artifact@v3
+      with:
+        name: macos-executables
+        path: starwargez-comment-collector-macos.tar.gz
+    
+    - name: Upload artifacts (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-executables
+        path: starwargez-comment-collector-linux.tar.gz
+    
+    - name: Upload to release
+      if: github.event_name == 'release'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          starwargez-comment-collector-*.zip
+          starwargez-comment-collector-*.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

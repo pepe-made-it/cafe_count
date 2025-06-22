@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools-scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "starwargez-comment-collector"
+dynamic = ["version"]
+description = "빛이왔다 스타워게즈 댓글 자동 수집기"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "pepe-made-it", email = "for.miracle.course@gmail.com"}
+]
+maintainers = [
+    {name = "pepe-made-it", email = "for.miracle.course@gmail.com"}
+]
+keywords = ["naver", "cafe", "comment", "scraper", "selenium", "automation", "korean"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Natural Language :: Korean",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "selenium>=4.0.0",
+    "pandas>=1.3.0",
+    "openpyxl>=3.0.0",
+    "webdriver-manager>=3.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/pepe-made-it/star"
+Documentation = "https://github.com/pepe-made-it/star/blob/main/README.md"
+Repository = "https://github.com/pepe-made-it/star.git"
+"Bug Reports" = "https://github.com/pepe-made-it/star/issues"
+Changelog = "https://github.com/pepe-made-it/star/releases"
+
+[project.scripts]
+starwargez-gui = "gui_main:main"
+starwargez-cli = "main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black>=22.0.0",
+    "isort>=5.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.900",
+]
+build = [
+    "build>=0.7.0",
+    "twine>=4.0.0",
+    "wheel>=0.37.0",
+]
+
+[tool.setuptools]
+py-modules = ["main", "gui_main"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt", "*.bat", "*.sh", "*.spec"]
+
+[tool.setuptools_scm]
+write_to = "_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true 

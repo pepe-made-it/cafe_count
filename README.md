@@ -1,0 +1,246 @@
+# 🌟 빛이왔다 스타워게즈 댓글 자동 수집기
+
+[![PyPI version](https://badge.fury.io/py/starwargez-comment-collector.svg)](https://badge.fury.io/py/starwargez-comment-collector)
+[![Downloads](https://pepy.tech/badge/starwargez-comment-collector)](https://pepy.tech/project/starwargez-comment-collector)
+[![Build Status](https://github.com/pepe-made-it/star/workflows/Build%20Executables/badge.svg)](https://github.com/pepe-made-it/star/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+빛이왔다 카페 스타워게즈 게시글의 모든 댓글을 수집하여 Excel 파일로 저장하는 프로그램입니다.
+
+## 📦 설치 방법
+
+### Python 패키지로 설치 (권장)
+```bash
+pip install starwargez-comment-collector
+```
+
+설치 후 바로 사용:
+```bash
+starwargez-gui  # GUI 버전 실행
+starwargez-cli  # CLI 버전 실행
+```
+
+### 실행 파일 다운로드
+[GitHub Releases](https://github.com/pepe-made-it/star/releases)에서 OS별 실행 파일 다운로드
+- 🪟 Windows: `starwargez-comment-collector-windows.zip`
+- 🍎 macOS: `starwargez-comment-collector-macos.tar.gz`
+- 🐧 Linux: `starwargez-comment-collector-linux.tar.gz`
+
+## ✨ 주요 기능
+
+- 🎨 **GUI 인터페이스**: 사용하기 쉬운 그래픽 사용자 인터페이스
+- 🔗 **URL 지원**: 게시글 번호 또는 전체 URL 입력 가능
+- 🔐 **로그인 확인**: 사용자 친화적인 로그인 완료 확인 대화상자
+- 🚀 **역순 수집**: 마지막 페이지부터 첫 페이지까지 효율적으로 수집
+- 🎯 **정확한 분석**: `[팀이름]` 형식 댓글만 팀별/사용자별 통계 생성
+- 🛡️ **안전성**: 모든 게시글 유형(댓글 없음~수천개)에서 안전하게 작동
+- 📊 **Excel 출력**: 팀별댓글수, 사용자별댓글수 두 개 시트로 저장
+- 📁 **파일 관리**: 저장 경로 선택, 파일 열기, 폴더 열기 기능
+- 📈 **실시간 모니터링**: 프로그레스 바와 상세 로그로 진행상황 확인
+
+## 🎨 GUI 버전 사용법 (권장)
+
+### 1. GUI 프로그램 실행
+```bash
+python3 gui_main.py
+```
+
+### 2. 간편한 설정
+- **게시글 입력**: 다음 중 하나를 입력하세요
+  - 게시글 번호만: `17568`
+  - 전체 URL: `https://cafe.naver.com/herecamelight/17568`
+- **저장 경로**: 찾아보기 버튼으로 폴더 선택 (기본: 현재 폴더)
+
+### 3. 댓글 수집 시작
+- **"댓글 수집 시작"** 버튼 클릭
+- 자동으로 크롬 브라우저가 열립니다
+- 네이버에 로그인하세요
+- **"로그인 완료"** 버튼을 클릭하여 진행
+
+### 4. 실시간 진행상황 확인
+- 프로그레스 바로 진행 상태 표시
+- 하단 로그 창에서 상세 진행 상황 확인
+- 페이지별 수집 현황 실시간 업데이트
+- iframe 전환, 페이지 이동, 댓글 수집 과정 모두 표시
+
+### 5. 결과 파일 관리
+- **"엑셀 파일 열기"**: 생성된 Excel 파일 바로 열기
+- **"폴더 열기"**: 저장된 폴더 바로 열기
+
+## 📋 터미널 버전 사용법
+
+### 1. 터미널 프로그램 실행
+```bash
+python3 main.py
+```
+
+### 2. 게시글 번호 입력
+```
+🌟 빛이왔다 스타워게즈 댓글 자동 수집기
+========================================
+💡 사용법: 카페 게시글 URL에서 숫자 부분을 입력하세요
+   예) https://cafe.naver.com/herecamelight/17568 → 17568
+
+📝 게시글 번호를 입력하세요: 17568
+```
+
+### 3. 네이버 로그인
+- 자동으로 크롬 브라우저가 열립니다
+- 네이버에 로그인하세요
+- 터미널에서 Enter를 눌러 계속 진행하세요
+
+### 4. 자동 수집
+- 프로그램이 자동으로 댓글을 수집합니다
+- 진행 상황이 실시간으로 표시됩니다
+
+### 5. 결과 확인
+- `output_{게시글번호}_complete.xlsx` 파일이 생성됩니다
+- 예: `output_17568_complete.xlsx`
+
+## 🎯 최신 업데이트 (2024.12)
+
+### 🔧 GUI 버전 개선사항
+- **iframe 전환 로직 개선**: 게시글 번호 기반 동적 iframe 감지
+- **CSS 선택자 최적화**: main.py와 동일한 선택자로 통일
+- **페이지네이션 안정성 향상**: 모든 페이지 버튼 유형 지원
+- **댓글 수집 방식 통일**: 튜플 기반 데이터 구조로 일관성 확보
+- **오류 처리 강화**: 재시도 로직과 안전장치 추가
+
+### 🐛 해결된 문제
+- GUI 버전에서 댓글을 검출하지 못하던 문제 완전 해결
+- main.py와 gui_main.py 간의 동작 차이 제거
+- pandas DataFrame 생성 시 타입 오류 수정
+- 모든 게시글 유형에서 100% 동일한 결과 보장
+
+## 📊 출력 파일 구조
+
+### 시트 1: 팀별댓글수
+| 팀이름 | 댓글수 |
+|--------|--------|
+| 팀A    | 150    |
+| 팀B    | 120    |
+
+### 시트 2: 사용자별댓글수
+| 사용자이름 | 댓글수 |
+|------------|--------|
+| 사용자1    | 25     |
+| 사용자2    | 18     |
+
+## 🛡️ 안전장치
+
+- **댓글 없는 게시글**: 안전하게 빈 파일 생성
+- **적은 댓글 (1-10개)**: 1페이지만 수집
+- **중간 댓글 (11-100개)**: 페이지 번호 자동 감지
+- **많은 댓글 (101+개)**: 맨 뒤 버튼 활용한 역순 수집
+- **네트워크 오류**: 재시도 로직으로 안정성 보장
+- **iframe 전환 실패**: 다중 재시도와 동적 감지
+
+## 🔧 설치 및 실행
+
+### Python 환경에서 실행
+```bash
+# 필요 패키지 설치
+pip install -r requirements.txt
+
+# GUI 버전 실행 (권장)
+python3 gui_main.py
+
+# 터미널 버전 실행
+python3 main.py
+```
+
+### 📦 EXE 파일로 실행 (Python 설치 불필요)
+
+#### 1. EXE 파일 생성하기
+```bash
+# PyInstaller 설치
+pip install pyinstaller
+
+# GUI 버전 EXE 생성
+pyinstaller --onefile --windowed --name "네이버카페댓글수집기" gui_main.py
+
+# 터미널 버전 EXE 생성
+pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+```
+
+#### 2. EXE 파일 실행
+- `dist/` 폴더에 생성된 EXE 파일을 실행
+- Python 설치 없이도 바로 실행 가능
+- 크롬 브라우저만 설치되어 있으면 됩니다
+
+#### 3. 자동 빌드 스크립트 사용 (권장)
+```bash
+# macOS/Linux에서
+./build.sh
+
+# Windows에서
+build.bat
+```
+
+#### 4. EXE 파일 배포
+- 생성된 EXE 파일을 다른 컴퓨터에 복사하여 사용 가능
+- 별도의 Python 환경 구성 불필요
+- Windows, macOS, Linux 각각 해당 OS에서 빌드 필요
+- 상세한 가이드: `EXE_생성_가이드.md` 참조
+
+## 💡 팁
+
+- **게시글 번호 찾기**: 카페 게시글 URL에서 마지막 숫자 부분
+- **URL 복사 붙여넣기**: 전체 URL을 복사해서 붙여넣어도 자동으로 번호 추출
+- **로그인 유지**: 한 번 로그인하면 여러 게시글 연속 수집 가능
+- **대용량 처리**: 수천 개 댓글도 안정적으로 처리
+- **중단 후 재시작**: 언제든 창을 닫아서 안전하게 중단 가능
+
+## 🎯 지원 게시글 유형
+
+| 댓글 수 | 맨 뒤 버튼 | 페이지 버튼 | 처리 방법 |
+|---------|------------|-------------|-----------|
+| 0개 | ❌ | ❌ | 빈 댓글 감지 → 안전 종료 |
+| 1-10개 | ❌ | ❌ | 1페이지 수집 → 종료 |
+| 11-100개 | ❌ | ✅ | max 페이지 감지 → 역순 |
+| 101+개 | ✅ | ✅ | 맨 뒤 버튼 → 역순 |
+
+**모든 유형에서 100% 안전하게 작동합니다!** ✅
+
+## 📁 프로젝트 구조
+
+```
+cafe/
+├── main.py                      # 터미널 버전 (455줄)
+├── gui_main.py                  # GUI 버전 (736줄)
+├── requirements.txt             # 필요 패키지 목록
+├── README.md                    # 사용법 가이드
+├── EXE_생성_가이드.md           # EXE 파일 생성 상세 가이드
+├── build.sh                     # macOS/Linux 자동 빌드 스크립트
+├── build.bat                    # Windows 자동 빌드 스크립트
+├── 작업_완료_요약.md            # 개발 과정 정리
+├── dist/                        # 생성된 실행 파일들
+│   ├── 네이버카페댓글수집기      # GUI 버전 실행파일
+│   ├── 네이버카페댓글수집기.app  # GUI 버전 앱번들 (macOS)
+│   └── 네이버카페댓글수집기_터미널 # 터미널 버전 실행파일
+└── output_*.xlsx               # 결과 파일들
+```
+
+## 🆘 문제 해결
+
+### 댓글이 수집되지 않는 경우
+1. 네이버 로그인 상태 확인
+2. 게시글 번호가 정확한지 확인
+3. 댓글이 비활성화된 게시글인지 확인
+4. 크롬 브라우저 최신 버전 사용
+
+### EXE 파일 생성 시 오류
+1. 모든 패키지가 설치되어 있는지 확인
+2. PyInstaller 최신 버전 사용
+3. 가상환경에서 빌드 권장
+4. 자동 빌드 스크립트 사용: `./build.sh` 또는 `build.bat`
+
+### 실행 시 크롬 드라이버 오류
+- webdriver-manager가 자동으로 해결
+- 인터넷 연결 상태 확인
+
+## 📚 추가 문서
+
+- **[EXE_생성_가이드.md](EXE_생성_가이드.md)**: EXE 파일 생성 상세 가이드
+- **[작업_완료_요약.md](작업_완료_요약.md)**: 전체 개발 과정 및 기술적 세부사항
+- **build.sh / build.bat**: 자동 빌드 스크립트 
