@@ -1,4 +1,4 @@
-name: Build Executables
+name: Build and Release Executables
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch:
+  workflow_dispatch:  # 수동 실행 가능
 
 jobs:
   build:
@@ -32,63 +32,64 @@ jobs:
     - name: Build GUI executable (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        pyinstaller --onefile --windowed --name "네이버카페댓글수집기" gui_main.py
-        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+        pyinstaller --onefile --windowed --name "빛이왔다_스타워게즈_댓글수집기" --icon=icon.ico gui_main.py || pyinstaller --onefile --windowed --name "빛이왔다_스타워게즈_댓글수집기" gui_main.py
+        pyinstaller --onefile --name "빛이왔다_스타워게즈_댓글수집기_터미널" main.py
     
     - name: Build GUI executable (macOS)
       if: matrix.os == 'macos-latest'
       run: |
-        pyinstaller --onefile --windowed --name "네이버카페댓글수집기" gui_main.py
-        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+        pyinstaller --onefile --windowed --name "빛이왔다_스타워게즈_댓글수집기" gui_main.py
+        pyinstaller --onefile --name "빛이왔다_스타워게즈_댓글수집기_터미널" main.py
+        # macOS용 DMG 생성 시도
+        hdiutil create -volname "빛이왔다 스타워게즈 댓글수집기" -srcfolder dist -ov -format UDZO "빛이왔다_스타워게즈_댓글수집기.dmg" || echo "DMG creation failed, using tar.gz"
     
     - name: Build GUI executable (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
-        pyinstaller --onefile --name "네이버카페댓글수집기" gui_main.py
-        pyinstaller --onefile --name "네이버카페댓글수집기_터미널" main.py
+        pyinstaller --onefile --name "빛이왔다_스타워게즈_댓글수집기" gui_main.py
+        pyinstaller --onefile --name "빛이왔다_스타워게즈_댓글수집기_터미널" main.py
     
-    - name: Create archive (Windows)
+    - name: Create release archive (Windows)
       if: matrix.os == 'windows-latest'
       run: |
-        7z a starwargez-comment-collector-windows.zip ./dist/*
+        7z a "빛이왔다_스타워게즈_댓글수집기_Windows.zip" ./dist/*
     
-    - name: Create archive (macOS)
+    - name: Create release archive (macOS)
       if: matrix.os == 'macos-latest'
       run: |
-        tar -czf starwargez-comment-collector-macos.tar.gz -C dist .
+        if [ -f "빛이왔다_스타워게즈_댓글수집기.dmg" ]; then
+          echo "DMG file created successfully"
+        else
+          tar -czf "빛이왔다_스타워게즈_댓글수집기_macOS.tar.gz" -C dist .
+        fi
     
-    - name: Create archive (Linux)
+    - name: Create release archive (Linux)
       if: matrix.os == 'ubuntu-latest'
       run: |
-        tar -czf starwargez-comment-collector-linux.tar.gz -C dist .
+        tar -czf "빛이왔다_스타워게즈_댓글수집기_Linux.tar.gz" -C dist .
     
-    - name: Upload artifacts (Windows)
-      if: matrix.os == 'windows-latest'
-      uses: actions/upload-artifact@v3
+    - name: Upload to Release (Windows)
+      if: github.event_name == 'release' && matrix.os == 'windows-latest'
+      uses: softprops/action-gh-release@v1
       with:
-        name: windows-executables
-        path: starwargez-comment-collector-windows.zip
+        files: "빛이왔다_스타워게즈_댓글수집기_Windows.zip"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Upload artifacts (macOS)
-      if: matrix.os == 'macos-latest'
-      uses: actions/upload-artifact@v3
-      with:
-        name: macos-executables
-        path: starwargez-comment-collector-macos.tar.gz
-    
-    - name: Upload artifacts (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      uses: actions/upload-artifact@v3
-      with:
-        name: linux-executables
-        path: starwargez-comment-collector-linux.tar.gz
-    
-    - name: Upload to release
-      if: github.event_name == 'release'
+    - name: Upload to Release (macOS)
+      if: github.event_name == 'release' && matrix.os == 'macos-latest'
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          starwargez-comment-collector-*.zip
-          starwargez-comment-collector-*.tar.gz
+          빛이왔다_스타워게즈_댓글수집기.dmg
+          빛이왔다_스타워게즈_댓글수집기_macOS.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload to Release (Linux)
+      if: github.event_name == 'release' && matrix.os == 'ubuntu-latest'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "빛이왔다_스타워게즈_댓글수집기_Linux.tar.gz"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
