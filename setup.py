@@ -28,7 +28,6 @@ setup(
         "Intended Audience :: End Users/Desktop",
         "Topic :: Internet :: WWW/HTTP :: Browsers",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -38,6 +37,7 @@ setup(
         "Operating System :: OS Independent",
         "Natural Language :: Korean",
     ],
+    license="MIT",
     python_requires=">=3.8",
     install_requires=requirements,
     entry_points={

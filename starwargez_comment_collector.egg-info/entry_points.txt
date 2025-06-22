@@ -1,0 +1,3 @@
+[console_scripts]
+starwargez-cli = main:main
+starwargez-gui = gui_main:main
