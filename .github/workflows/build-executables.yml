@@ -69,17 +69,19 @@ jobs:
         tar -czf "빛이왔다_스타워게즈_댓글수집기_Linux.tar.gz" -C dist .
     
     - name: Upload to Release (Windows)
-      if: github.event_name == 'release' && matrix.os == 'windows-latest'
+      if: (github.event_name == 'release' || startsWith(github.ref, 'refs/tags/')) && matrix.os == 'windows-latest'
       uses: softprops/action-gh-release@v1
       with:
+        tag_name: ${{ github.ref_name }}
         files: "빛이왔다_스타워게즈_댓글수집기_Windows.zip"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Upload to Release (macOS)
-      if: github.event_name == 'release' && matrix.os == 'macos-latest'
+      if: (github.event_name == 'release' || startsWith(github.ref, 'refs/tags/')) && matrix.os == 'macos-latest'
       uses: softprops/action-gh-release@v1
       with:
+        tag_name: ${{ github.ref_name }}
         files: |
           빛이왔다_스타워게즈_댓글수집기.dmg
           빛이왔다_스타워게즈_댓글수집기_macOS.tar.gz
@@ -87,9 +89,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Upload to Release (Linux)
-      if: github.event_name == 'release' && matrix.os == 'ubuntu-latest'
+      if: (github.event_name == 'release' || startsWith(github.ref, 'refs/tags/')) && matrix.os == 'ubuntu-latest'
       uses: softprops/action-gh-release@v1
       with:
+        tag_name: ${{ github.ref_name }}
         files: "빛이왔다_스타워게즈_댓글수집기_Linux.tar.gz"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
