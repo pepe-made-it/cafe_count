@@ -14,13 +14,13 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="starwargez-comment-collector",  # PyPI에서 고유한 패키지명
-    version="1.0.0",
+    version="1.1.0",
     author="pepe-made-it",
-    author_email="for.miracle.course@gmail.com",  # 실제 이메일로 변경
+    author_email="for.miracle.course@gmail.com",  # 실제 이메일로 변경
     description="빛이왔다 스타워게즈 댓글 자동 수집기",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pepe-made-it/star",
+    url="https://github.com/pepe-made-it/cafe_count",
     packages=find_packages(),
     py_modules=["main", "gui_main"],  # 단일 모듈들
     classifiers=[
@@ -52,8 +52,8 @@ setup(
     },
     keywords="naver cafe comment scraper selenium automation korean",
     project_urls={
-        "Bug Reports": "https://github.com/pepe-made-it/star/issues",
-        "Source": "https://github.com/pepe-made-it/star/",
-        "Documentation": "https://github.com/pepe-made-it/star/blob/main/README.md",
+        "Bug Reports": "https://github.com/pepe-made-it/cafe_count/issues",
+        "Source": "https://github.com/pepe-made-it/cafe_count/",
+        "Documentation": "https://github.com/pepe-made-it/cafe_count/blob/main/README.md",
     },
 ) 

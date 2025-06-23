@@ -1,7 +1,7 @@
 # 🌟 빛이왔다 스타워게즈 댓글 자동 수집기
 
-[![GitHub release](https://img.shields.io/github/release/pepe-made-it/star.svg)](https://github.com/pepe-made-it/star/releases)
-[![Downloads](https://img.shields.io/github/downloads/pepe-made-it/star/total.svg)](https://github.com/pepe-made-it/star/releases)
+[![GitHub release](https://img.shields.io/github/release/pepe-made-it/cafe_count.svg)](https://github.com/pepe-made-it/cafe_count/releases)
+[![Downloads](https://img.shields.io/github/downloads/pepe-made-it/cafe_count/total.svg)](https://github.com/pepe-made-it/cafe_count/releases)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -10,7 +10,7 @@
 ## 📥 다운로드 및 설치
 
 ### 방법 1: 실행 파일 다운로드 (추천)
-[**GitHub Releases**](https://github.com/pepe-made-it/star/releases)에서 운영체제에 맞는 파일을 다운로드하세요:
+[**GitHub Releases**](https://github.com/pepe-made-it/cafe_count/releases)에서 운영체제에 맞는 파일을 다운로드하세요:
 
 - **Windows**: `빛이왔다_스타워게즈_댓글수집기_Windows.zip`
 - **macOS**: `빛이왔다_스타워게즈_댓글수집기.dmg` 또는 `.tar.gz`
@@ -21,8 +21,8 @@
 ### 방법 2: 소스코드로 실행
 ```bash
 # 저장소 클론
-git clone https://github.com/pepe-made-it/star.git
-cd star
+git clone https://github.com/pepe-made-it/cafe_count.git
+cd cafe_count
 
 # 의존성 설치
 pip install -r requirements.txt
@@ -80,8 +80,8 @@ python main.py
 
 ## 🛠️ 개발자 정보
 
-빛이왔다 스타워게즈 댓글 자동 수집기 v1.0.0
-- **GitHub**: https://github.com/pepe-made-it/star
+빛이왔다 스타워게즈 댓글 자동 수집기 v1.1.0
+- **GitHub**: https://github.com/pepe-made-it/cafe_count
 - **개발자**: pepe-made-it
 - **라이선스**: MIT
 
@@ -94,7 +94,7 @@ python main.py
 
 ## 🐛 문제 신고
 
-버그 발견이나 기능 제안이 있으시면 [GitHub Issues](https://github.com/pepe-made-it/star/issues)에 신고해주세요.
+버그 발견이나 기능 제안이 있으시면 [GitHub Issues](https://github.com/pepe-made-it/cafe_count/issues)에 신고해주세요.
 
 ## 📄 라이선스
 
