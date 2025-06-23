@@ -1,7 +1,7 @@
 # 🌟 빛이왔다 스타워게즈 댓글 자동 수집기
 
-[![GitHub release](https://img.shields.io/github/release/pepe-made-it/star.svg)](https://github.com/pepe-made-it/star/releases)
-[![Downloads](https://img.shields.io/github/downloads/pepe-made-it/star/total.svg)](https://github.com/pepe-made-it/star/releases)
+[![GitHub release](https://img.shields.io/github/release/pepe-made-it/star.svg)](https://github.com/pepe-made-it/cafe_count/releases)
+[![Downloads](https://img.shields.io/github/downloads/pepe-made-it/star/total.svg)](https://github.com/pepe-made-it/cafe_count/releases)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
